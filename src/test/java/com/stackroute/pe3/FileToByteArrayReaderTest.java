@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNull;
 
 /**

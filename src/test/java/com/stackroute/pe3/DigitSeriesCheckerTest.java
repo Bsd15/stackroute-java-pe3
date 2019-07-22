@@ -85,7 +85,7 @@ public class DigitSeriesCheckerTest {
      * Given as string of numbers in series, the method should return true.
      */
     @Test
-    public void givenInputShouldReturnFalse() {
+    public void givenInputShouldReturnTrue() {
         digitSeriesChecker.readDigits("54,53,52,51,50,49,48");
         assertTrue("givenInputShouldReturnFalse: check checkForSeries(). Should return true.",
                 digitSeriesChecker.checkSeries());
