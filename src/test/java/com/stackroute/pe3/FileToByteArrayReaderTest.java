@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNull;
@@ -33,12 +34,12 @@ public class FileToByteArrayReaderTest {
      * contents of the file in byte array.
      */
     @Test
-    public void givenFileNameAndExtensionShouldReturnByteArray() {
+    public void givenFileNameAndExtensionShouldReturnByteArray() throws IOException {
         /*Expected test string which is converted into byte array*/
         String testString = "Hello. This is a test string";
         byte[] testByteArray = testString.getBytes();
         assertArrayEquals("testReadFileSuccessGivenFileNameAndExtensionShouldReturnByteArray: check readFile()",
-                testByteArray, fileToByteArrayReader.readFile("test", "txt"));
+                testByteArray, fileToByteArrayReader.readFile("text/test", "txt"));
     }
 
 
@@ -47,8 +48,8 @@ public class FileToByteArrayReaderTest {
      * when the wrong(non-existent) file path is given.
      */
     @Test(expected = FileNotFoundException.class)
-    public void givenFileNameAndExtensionShouldReturnFileNotFoundException() {
-        fileToByteArrayReader.readFile("test1", "txt");
+    public void givenFileNameAndExtensionShouldReturnFileNotFoundException() throws IOException {
+        fileToByteArrayReader.readFile("text/test1", "txt");
     }
 
     /**
@@ -56,8 +57,8 @@ public class FileToByteArrayReaderTest {
      * the file is empty.
      */
     @Test
-    public void givenFileNameAndExtensionWithAnEmptyFileShouldReturnNull() {
+    public void givenFileNameAndExtensionWithAnEmptyFileShouldReturnNull() throws IOException {
         assertNull("givenFileNameAndExtensionWithAnEmptyFileShouldReturnNull: check readFile(). The method should read a empty file and return null"
-                ,fileToByteArrayReader.readFile("nullFileTest","txt"));
+                ,fileToByteArrayReader.readFile("text/nullFileTest","txt"));
     }
 }

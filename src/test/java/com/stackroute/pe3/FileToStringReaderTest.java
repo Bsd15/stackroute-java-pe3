@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -33,7 +34,7 @@ public class FileToStringReaderTest {
      * given.
      */
     @Test(expected = FileNotFoundException.class)
-    public void givenWrongFilePathShouldThrowFileNotFoundException() {
+    public void givenWrongFilePathShouldThrowFileNotFoundException() throws IOException {
         fileToStringReader.readFile("test1.txt");
     }
 
@@ -43,7 +44,7 @@ public class FileToStringReaderTest {
      * given.
      */
     @Test(expected = NullPointerException.class)
-    public void givenWrongFilePathShouldThrowFileNotFoundException() {
+    public void givenNullFilePathShouldThrowFileNotFoundException() throws IOException {
         fileToStringReader.readFile(null);
     }
 
@@ -53,7 +54,7 @@ public class FileToStringReaderTest {
      * given.
      */
     @Test(expected = FileNotFoundException.class)
-    public void givenWrongFilePathShouldThrowFileNotFoundException() {
+    public void givenEmptyFilePathShouldThrowFileNotFoundException() throws IOException {
         fileToStringReader.readFile("");
     }
 
@@ -63,7 +64,7 @@ public class FileToStringReaderTest {
      * given.
      */
     @Test(expected = FileNotFoundException.class)
-    public void givenWrongFilePathShouldThrowFileNotFoundException() {
+    public void givenWhiteSpaceFilePathShouldThrowFileNotFoundException() throws IOException {
         fileToStringReader.readFile("   ");
     }
 
@@ -72,7 +73,7 @@ public class FileToStringReaderTest {
      * Method should return the contents in the file as string in uppercase.
      */
     @Test
-    public void givenFilePathShouldReturnContentsInStringInUpperCase() {
+    public void givenFilePathShouldReturnContentsInStringInUpperCase() throws IOException {
         fileToStringReader.readFile("test2.txt");
         String expectedString = "THIS IS A TEST FOR QUESTION 9";
         assertEquals("givenFilePathShouldReturnContentsInStringInUpperCase: check getFileContentsAsString(). Should return file contents in upper case.",
@@ -84,7 +85,7 @@ public class FileToStringReaderTest {
      * Method should return null if the file which is read is empty.
      */
     @Test
-    public void givenEmptyFileShouldReturnNull() {
+    public void givenEmptyFileShouldReturnNullValue() throws IOException {
         fileToStringReader.readFile("emptyFile.txt");
         assertNull("givenEmptyFileShouldReturnNull: check getFileContentsAsString(). Method should return null.",
                 fileToStringReader.getFileContentsAsString());
@@ -95,7 +96,7 @@ public class FileToStringReaderTest {
      * When a file containing only spaces is given, the method should return null.
      */
     @Test
-    public void givenFileWithOnlySpacesShouldReturnNull() {
+    public void givenFileWithOnlySpacesShouldReturnNull() throws IOException {
         fileToStringReader.readFile("onlySpacesFile.txt");
         assertNull("givenEmptyFileShouldReturnNull: check getFileContentsAsString(). Method should return null.",
                 fileToStringReader.getFileContentsAsString());
@@ -106,22 +107,10 @@ public class FileToStringReaderTest {
      * Check if the file return the length of the file.
      */
     @Test
-    public void givenFilePathShouldReturnLengthOfFile() {
+    public void givenFilePathShouldReturnLengthOfFile() throws IOException {
         fileToStringReader.readFile("test2.txt");
         int expectedLength = 29;
         assertEquals("givenFilePathShouldReturnLengthOfFile: check getFileLength(). Should return a int.",
                 expectedLength, fileToStringReader.getFileLenght());
-    }
-
-    /**
-     * Test - getFileLength()
-     * Check if the file returns null as the length of the file when a empty file is given.
-     */
-    @Test
-    public void givenEmptyFileShouldReturnNull() {
-        fileToStringReader.readFile("emptyFile.txt");
-        int expectedLength = 29;
-        assertNull("givenEmptyFileShouldReturnNull: check getFileLength(). Should return a int.",
-                fileToStringReader.getFileLenght());
     }
 }

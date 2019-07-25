@@ -6,9 +6,14 @@ import java.util.List;
 public class DigitSeriesChecker {
     private String digitsInString = null;
     private int[] intArray = null;
+
+    /*
+    Should return null pointer exception if the passed value is null or empty.
+    Else the passed value should assigned to a variable.
+     */
     public void readDigits(String digitsInString) {
         if (digitsInString == null || digitsInString.isEmpty() || digitsInString.trim().isEmpty()){
-            throw new NullPointerException();
+            digitsInString.trim().charAt(2);
         }
         else {
             this.digitsInString = digitsInString;
@@ -17,6 +22,10 @@ public class DigitSeriesChecker {
     }
 
 
+    /*
+    Splits the string and stores the digits in int array,
+     and it should return it.
+     */
     public int[] getIntarray(){
         String[] digitsInStringArray = this.digitsInString.split(", |,");
         List<Integer> digitsInList = new ArrayList<>();
@@ -31,6 +40,10 @@ public class DigitSeriesChecker {
         return intArray;
     }
 
+    /*
+    Should return true if the digits are in series
+    else return false.
+     */
     public boolean checkSeries() {
         boolean boo = true;
         for (int i = 0; i < this.intArray.length - 1; i++){

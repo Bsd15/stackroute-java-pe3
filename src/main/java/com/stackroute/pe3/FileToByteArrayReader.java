@@ -9,37 +9,25 @@ import java.io.*;
  */
 public class FileToByteArrayReader {
 
-    public byte[] readFile(String fileName, String extension) {
+    /*
+    Returns byte[] of a file, if the file exist and if it holds some value.
+    Else it should return Null pointer exception if the file holds null value.
+     */
+    public byte[] readFile(String fileName, String extension) throws IOException{
         String text = "";
         File file;
         FileReader fileReader;
         BufferedReader bufferedReader;
-        try {
             file = new File(fileName.concat(".").concat(extension));
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
             String oneLineText;
-            System.out.println(bufferedReader.readLine());
-            System.out.println(32);
             while ((oneLineText = bufferedReader.readLine()) != null){
                 text = text.concat(oneLineText);
-                System.out.println(text);
             }
             if (text.trim().isEmpty()){
-                throw new NullPointerException();
+                return null;
             }
-
-        }catch (Exception e){
-
-//            throw fileNotFoundException;
-//            throw new FileNotFoundException();
-
-        }
-        finally {
-            file = null;
-            fileReader = null;
-            bufferedReader = null;
-        }
         return text.getBytes();
     }
 }
